@@ -1,0 +1,33 @@
+.fullContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 1000px;
+
+}
+
+.Header{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-left: 500px; */
+    color: brown;
+    font-size: 60px;
+    /* width: 1000px; */
+}
+
+.Box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+
+}
