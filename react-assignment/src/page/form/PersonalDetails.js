@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 export default function PersonalDetails() {
     const [fname, setFirstName] = useState('');
     const [lname, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+
+    const navigate = useNavigate();
   
     function handleSubmit(event) {
-      event.preventDefault();
-      console.log('fname', fname);
-      console.log('lname', lname);
+        event.preventDefault();
+        console.log('fname', fname);
+        console.log('lname', lname);
+        navigate('/govtDetails');
     }
   
     return (        

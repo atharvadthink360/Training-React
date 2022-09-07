@@ -1,12 +1,21 @@
 import { useState } from "react";
 import PersonalDetails from './PersonalDetails.js';
+import { Link,Route,useNavigate } from "react-router-dom";
 
 export default function GovtDetails() {
     const [aadhaar, setaadhaar] = useState('');
     const [pan, setpan] = useState('');
+
+    const navigate = useNavigate();
+
+    const navigateToPD = () => {
+        // 👇️ navigate to /contacts
+        navigate('/personalDetails');
+    };
   
     function handleSubmit(event) {
-      event.preventDefault();
+        event.preventDefault();
+        navigate('/addressDetails');
     //   console.log('fname', fname);
     //   console.log('lname', lname);
     }
@@ -39,7 +48,10 @@ export default function GovtDetails() {
                 onChange={(e) => setpan(e.target.value)}
             />
             </div>
-            <button type="button" id="backBtn">Back</button>
+
+            {/* <Link to="/personalDetails">Back</Link> */}
+
+            <button type="button" id="backBtn" onClick={navigateToPD}>Back</button>
             <button type="submit">Submit</button>
         </form>
     );
