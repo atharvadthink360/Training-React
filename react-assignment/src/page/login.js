@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './login.css';
 
+
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -9,6 +10,7 @@ export default function Login() {
         event.preventDefault();
         console.log('username:', username);
         console.log('password:', password);
+        
     }
 
     return (
