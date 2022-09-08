@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useState,useEffect,useContext } from "react";
 import PersonalDetails from './PersonalDetails.js';
 import { Link,Route,useNavigate } from "react-router-dom";
+import { infoContext } from "../../infoContext";
 
 export default function GovtDetails() {
-    const [aadhaar, setaadhaar] = useState('');
-    const [pan, setpan] = useState('');
+    const [User, setUser] = useContext(infoContext);
+
+    const aadhaarno = User.hasOwnProperty('aadhaar') ? User['aadhaar'] : "";
+    const panno = User.hasOwnProperty('pan') ? User['pan'] : "";
+
+    const [aadhaar, setaadhaar] = useState(aadhaarno);
+    const [pan, setpan] = useState(panno);
+
+    const useUpdateInfo = (inp, key) => {
+        useEffect(() => {
+            const userObj = {
+                ...User
+            }
+            userObj[key] = inp;
+            setUser(userObj);
+        }, [inp]);
+    } 
+
+    useUpdateInfo(aadhaar, "aadhaar")
+    useUpdateInfo(pan, "pan")
 
     const navigate = useNavigate();
 

@@ -55,7 +55,8 @@ export default function AddressDetails() {
     "Puducherry"];
   
     function handleSubmit(event) {
-      event.preventDefault();
+        event.preventDefault();
+        navigate('/summary');
     //   console.log('fname', fname);
     //   console.log('lname', lname);
     }
