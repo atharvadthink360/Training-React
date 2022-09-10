@@ -139,13 +139,18 @@ export default function PersonalDetails() {
                 <label htmlFor="phone">Phone No:</label>
                 <input
                     id="phone"
-                    type="number"
+                    type="type"
                     value={phone}
+                    minLength={10}
+                    maxLength={10}
+                    pattern="\d*"
                     required
                     onChange={(e) => setPhone(e.target.value)}
                 />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">
+                Submit
+            </button>
         </form>
     );
 }

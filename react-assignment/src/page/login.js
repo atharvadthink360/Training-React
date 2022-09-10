@@ -7,6 +7,24 @@ import { infoContext } from "../infoContext";
 export default function Login() {
     const [User, setUser] = useContext(infoContext);
 
+    var navigate = useNavigate();
+
+    const navigateToPD = () => {
+        navigate("/personalDetails");
+    };
+
+    const navigateToGD = () => {
+        navigate("/govtDetails");
+    };
+
+    const navigateToAD = () => {
+        navigate("/addressDetails");
+    };
+
+    const navigateToSummary = () => {
+        navigate("/summary");
+    };
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,8 +38,6 @@ export default function Login() {
         }, [inp]);
     };
 
-    var navigate = useNavigate();
-
     function callPath(path) {
         console.log("Navigating");
         navigate(path);
@@ -34,12 +50,39 @@ export default function Login() {
 
     // <Route path="/personalDetails" exact element={<PersonalDetails/>}/>
 
-    const handleSubmit = () => {
-        // event.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         console.log("username:", username);
         console.log("password:", password);
 
         var path = "";
+
+        const userObj = {
+            ...User,
+        };
+        userObj["username"] = username;
+        userObj["password"] = password;
+        userObj["loggedIn"] = true;
+
+        setUser(userObj);
+
+        if (User.username == null) {
+            userObj["step"] = 1;
+
+            setUser(userObj);
+            // document.getElementById("loginBtn").innerHTML = "LOGOUT";
+
+            console.log(User);
+
+            // localStorage.setItem("loggedIn", true);
+
+            // UpdateInfo(username, "username");
+            // UpdateInfo(password, "password");
+
+            console.log("OITTTTTTTTTTT");
+
+            navigate("/personalDetails");
+        }
 
         if (User.username != null) {
             // let path = "";
@@ -47,23 +90,27 @@ export default function Login() {
             if (User.step === 1) {
                 console.log("INNNNNN");
                 // window.location.href = "/personalDetails";
-                path = "/personalDetails";
+                // path = "/personalDetails";
+                navigateToPD();
                 // navigate("/personalDetails");
             } else if (User.step === 2) {
                 console.log("IOPPPPOPPPOPO");
-                path = "/govtDetails";
+                // path = "/govtDetails";
+                navigateToGD();
                 // window.location.href = "/govtDetails";
                 // navigate("/govtDetails");
             } else if (User.step === 3) {
-                path = "/addressDetails";
+                // path = "/addressDetails";
+                navigateToAD();
                 // navigate("/addressDetails");
                 // window.location.href = "/addressDetails";
             } else {
                 // window.location.href = "/summary";
-                path = "/summary";
+                // path = "/summary";
+                navigateToSummary();
                 // navigate("/summary");
             }
-            // navigate(path);
+            // navigate("/addressDetails");
         }
 
         console.log(path);
@@ -72,28 +119,6 @@ export default function Login() {
             console.log("INSIDE THIS");
             callPath(path);
         }
-
-        const userObj = {
-            ...User,
-        };
-        userObj["username"] = username;
-        userObj["password"] = password;
-        userObj["loggedIn"] = true;
-        userObj["step"] = 1;
-
-        setUser(userObj);
-        document.getElementById("loginBtn").innerHTML = "LOGOUT";
-
-        console.log(User);
-
-        // localStorage.setItem("loggedIn", true);
-
-        // UpdateInfo(username, "username");
-        // UpdateInfo(password, "password");
-
-        console.log("OITTTTTTTTTTT");
-
-        navigate("/personalDetails");
 
         // event.preventDefault();
     };

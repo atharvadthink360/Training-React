@@ -64,33 +64,41 @@ export default function GovtDetails() {
         PersonalDetails();
     }
   
-    return (        
+    return (
         <form onSubmit={handleSubmit}>
             <header>Step 2 of 3</header>
             <div>
-            <label htmlFor="aadhaar">Aadhaar No.:</label>
-            <input
-                id="aadhaar"
-                type="number"
-                value={aadhaar}
-                required
-                onChange={(e) => setaadhaar(e.target.value)}
-            />
+                <label htmlFor="aadhaar">Aadhaar No.:</label>
+                <input
+                    id="aadhaar"
+                    type="text"
+                    value={aadhaar}
+                    required
+                    minLength={12}
+                    maxLength={12}
+                    pattern="\d*"
+                    onChange={(e) => setaadhaar(e.target.value)}
+                />
             </div>
             <div>
-            <label htmlFor="pan">PAN No.:</label>
-            <input
-                id="pan"
-                type="text"
-                value={pan}
-                required
-                onChange={(e) => setpan(e.target.value)}
-            />
+                <label htmlFor="pan">PAN No.:</label>
+                <input
+                    id="pan"
+                    type="text"
+                    value={pan}
+                    minLength={10}
+                    maxLength={10}
+                    pattern="\d*"
+                    required
+                    onChange={(e) => setpan(e.target.value)}
+                />
             </div>
 
             {/* <Link to="/personalDetails">Back</Link> */}
 
-            <button type="button" id="backBtn" onClick={navigateToPD}>Back</button>
+            <button type="button" id="backBtn" onClick={navigateToPD}>
+                Back
+            </button>
             <button type="submit">Submit</button>
         </form>
     );

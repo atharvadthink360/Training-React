@@ -18,53 +18,56 @@ export default function Header() {
 
     const navigate = useNavigate();
 
+    const [buttonText, setButtonText] = useState();
+
     const [User, setUser] = useContext(infoContext);
 
-    useEffect(() => {}, [User]);
+    // useEffect(() => {
+    //     if (document)
+    // })
 
-    function textChange() {
+    // useEffect(() => {
+    //     console.log("Passed");
+    //     if (User.loggedIn) {
+    //         setButtonText("Logout");
+    //     }
+    //     if (User.loggedIn == null || User.loggedIn == false) {
+    //         setButtonText("Login");
+    //     }
+    //     // setButtonText("Lo")
+    // }, [buttonText]);
+
+    function textChange(event) {
+        var bText = "";
         if (User.loggedIn) {
             console.log("Button Press");
-            document.getElementById("loginBtn").innerHTML = "LOGIN";
+            // document.getElementById("loginBtn").innerHTML = "LOGIN";
+
             User.loggedIn = false;
+            // setUser(userObj);
             document.getElementById("usernameVal").innerHTML = "";
+            // bText = "Login";
+            // document.getElementById("loginBtn").innerHTML = "Login";
+            // setButtonText("Logout");
             console.log(User);
             navigate("/");
         } else {
-            document.getElementById("loginBtn").innerHTML = "LOGIN";
+            // setButtonText("Login");
+            // document.getElementById("loginBtn").innerHTML = "LOGIN";
+            // bText = "Logout";
+            // setButtonText("Logout");
+            User.loggedIn = true;
+            // setUser(userObj);
+            // document.getElementById("loginBtn").innerHTML = "Logout";
             navigate("/");
         }
+        // setButtonText(bText);
     }
-
-    // function loginLink() {
-    //     window.location.href = "/login";
-    // }
-
-    useEffect(() => {
-        if (User.username != null) {
-            let loginVal = User.loggedIn;
-            console.log(User.loggedIn);
-            if (loginVal == false) {
-                loginText = "Login";
-                // document.getElementById("usernameVal").innerHTML = "";
-            } else {
-                loginText = "Signout";
-                console.log("username", User.username);
-                // let usernameVal = {User.username};
-                // document.getElementById("usernameVal").style.display = "block";
-                // document.getElementById("usernameVal").innerHTML =
-                // "Hello, " + usernameVal + " !";
-            }
-        } else {
-            loginText = "Login";
-            // document.getElementById("usernameVal").innerHTML = "";
-        }
-    }, []);
 
     console.log(User);
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" id="Header">
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Info Tracker
@@ -82,10 +85,12 @@ export default function Header() {
                 ) : (
                     ""
                 )}
-                <Button color="inherit" id="loginBtn" onClick={textChange}>
-                    LOGIN
-                    {/* {User.loggedIn ? "Logout" : "Login"} */}
-                </Button>
+                {User.loggedIn ? (
+                    <Button color="inherit" id="loginBtn" onClick={textChange}>
+                        {/* {User.loggedIn ? "Logout" : "Login"} */}
+                        LOGOUT
+                    </Button>
+                ) : null}
             </Toolbar>
         </AppBar>
     );

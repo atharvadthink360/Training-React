@@ -111,6 +111,7 @@ export default function AddressDetails() {
                     id="flatno"
                     type="number"
                     value={flatno}
+                    min={0}
                     required
                     onChange={(e) => setflatno(e.target.value)}
                 />
@@ -152,7 +153,9 @@ export default function AddressDetails() {
             <button type="button" id="backBtn" onClick={navigateToGD}>
                 Back
             </button>
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">
+                Submit
+            </button>
         </form>
     );
 }
