@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { infoContext } from "../infoContext";
+import "./login.css"
 
 export default function Login() {
     const [User, setUser] = useContext(infoContext);
@@ -79,7 +80,7 @@ export default function Login() {
             // UpdateInfo(username, "username");
             // UpdateInfo(password, "password");
 
-            console.log("OITTTTTTTTTTT");
+            // console.log("OITTTTTTTTTTT");
 
             navigate("/personalDetails");
         }
@@ -115,7 +116,7 @@ export default function Login() {
 
         console.log(path);
 
-        if (path != "") {
+        if (path !== "") {
             console.log("INSIDE THIS");
             callPath(path);
         }
@@ -124,28 +125,36 @@ export default function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={username}
-                    required
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    required
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="login-page">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    {/* <label htmlFor="username">Username</label> */}
+                    <input
+                        className="input-label"
+                        id="username"
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        required
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div>
+                    {/* <label htmlFor="password">Password</label> */}
+                    <input
+                        className="input-label"
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <br/>
+                <button style={{padding:10, fontSize:15, border:0,borderRadius:15}} type="submit">Submit</button>
+            </form>
+        </div>
+
     );
 }

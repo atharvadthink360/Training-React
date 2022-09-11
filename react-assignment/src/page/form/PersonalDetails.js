@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { infoContext } from "../../infoContext";
+import "./PersonalDetails.css"
 
 export default function PersonalDetails() {
     const navigate = useNavigate();
@@ -103,54 +104,72 @@ export default function PersonalDetails() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <header>Step 1 of 3</header>
-            <div>
-                <label htmlFor="fname">First Name:</label>
-                <input
-                    id="fname"
-                    type="text"
-                    value={fname}
-                    required
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="lname">Last Name:</label>
-                <input
-                    id="lname"
-                    type="text"
-                    value={lname}
-                    required
-                    onChange={(e) => setLastName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="phone">Phone No:</label>
-                <input
-                    id="phone"
-                    type="type"
-                    value={phone}
-                    minLength={10}
-                    maxLength={10}
-                    pattern="\d*"
-                    required
-                    onChange={(e) => setPhone(e.target.value)}
-                />
-            </div>
-            <button type="submit" id="submitBtn">
-                Submit
-            </button>
-        </form>
+        <div className="personalDetails">
+            <form onSubmit={handleSubmit}>
+                <div className="header">
+                    <span>Personal Details</span>
+                </div>
+                <div className="personal-details-form-container">
+                    <div>
+                        {/* <label htmlFor="fname">First Name:</label> */}
+                        <br/>
+                        <input
+                            className="input-label"
+                            id="fname"
+                            type="text"
+                            placeholder="First Name"
+                            value={fname}
+                            required
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        {/* <label htmlFor="lname">Last Name:</label> */}
+                        <br/>
+                        <input
+                            className="input-label"
+                            id="lname"
+                            type="text"
+                            placeholder="Last Name"
+                            value={lname}
+                            required
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        {/* <label htmlFor="email">Email:</label> */}
+                        <br/>
+                        <input
+                            className="input-label"
+                            id="email"
+                            type="email"
+                            placeholder="Email ID"
+                            value={email}
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        {/* <label htmlFor="phone">Phone No:</label> */}
+                        <br/>
+                        <input
+                            className="input-label"
+                            id="phone"
+                            type="type"
+                            placeholder="Phone No"
+                            value={phone}
+                            minLength={10}
+                            maxLength={10}
+                            pattern="\d*"
+                            required
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <br/>
+                <button style={{padding:10, fontSize:15, border:0,borderRadius:15}} type="submit">Submit</button>
+            </form>
+        </div>
+
     );
 }

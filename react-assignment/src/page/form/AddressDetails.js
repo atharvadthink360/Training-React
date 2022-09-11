@@ -3,6 +3,7 @@ import PersonalDetails from "./PersonalDetails.js";
 import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { infoContext } from "../../infoContext";
+import "./AddressDetails.css"
 
 export default function AddressDetails() {
     const navigate = useNavigate();
@@ -103,59 +104,76 @@ export default function AddressDetails() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <header>Step 3 of 3</header>
-            <div>
-                <label htmlFor="flatno">Flat No.:</label>
-                <input
-                    id="flatno"
-                    type="number"
-                    value={flatno}
-                    min={0}
-                    required
-                    onChange={(e) => setflatno(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="bname">Building Name.:</label>
-                <input
-                    id="bname"
-                    type="text"
-                    value={bname}
-                    required
-                    onChange={(e) => setbname(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="city">City:</label>
-                <input
-                    id="city"
-                    type="text"
-                    value={city}
-                    required
-                    onChange={(e) => setcity(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="state">State:</label>
-                <input
-                    id="state"
-                    type="text"
-                    value={state}
-                    required
-                    onChange={(e) => setstate(e.target.value)}
-                />
-            </div>
-            {/* <button type="button" id="backBtn">Back</button> */}
+        <div className="AddressDetails">
+            <form onSubmit={handleSubmit}>
+                <div className="header">
+                    <span>Address Details</span>
+                </div>
+                <div>
+                    {/* <label htmlFor="flatno">Flat number :</label> */}
+                    <br />
+                    <input
+                        id="flatno"
+                        type="number"
+                        placeholder="Flat No."
+                        value={flatno}
+                        min={0}
+                        required
+                        onChange={(e) => setflatno(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="bname">Building number :</label> */}
+                    <br />
+                    <input
+                        placeholder="Building No."
+                        id="bname"
+                        type="text"
+                        value={bname}
+                        required
+                        onChange={(e) => setbname(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="city">City :</label> */}
+                    <br />
+                    <input
+                        placeholder="City"
+                        id="city"
+                        type="text"
+                        value={city}
+                        required
+                        onChange={(e) => setcity(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="state">State :</label> */}
+                    <br />
+                    <input
+                        style={{marginBottom:10}}
+                        id="state"
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        required
+                        onChange={(e) => setstate(e.target.value)}
+                    />
+                </div>
+                {/* <button type="button" id="backBtn">Back</button> */}
 
-            {/* <Link>Back</Link> */}
+                {/* <Link>Back</Link> */}
 
-            <button type="button" id="backBtn" onClick={navigateToGD}>
-                Back
-            </button>
-            <button type="submit" id="submitBtn">
-                Submit
-            </button>
-        </form>
+                <br />
+
+                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15 }} type="button" id="backBtn" onClick={navigateToGD}>
+                    Back
+                </button>
+                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15, marginLeft: 10 }} type="submit">Submit</button>
+            </form>
+        </div>
+
     );
 }
