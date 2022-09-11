@@ -1,13 +1,30 @@
-import { useState,useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import PersonalDetails from './PersonalDetails.js';
-import { Link,Route,useNavigate } from "react-router-dom";
+import { Link, Route, useNavigate } from "react-router-dom";
 import { infoContext } from "../../infoContext";
+import "./GovtDetails.css"
+import { Bluetooth } from "@mui/icons-material";
+
 
 export default function GovtDetails() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (User.loggedIn != null) {
+            let loginVal = User.loggedIn;
+            if (loginVal == false) {
+                navigate("/");
+            }
+        } else {
+            navigate("/");
+        }
+    }, []);
+
     const [User, setUser] = useContext(infoContext);
 
-    const aadhaarno = User.hasOwnProperty('aadhaar') ? User['aadhaar'] : "";
-    const panno = User.hasOwnProperty('pan') ? User['pan'] : "";
+    const aadhaarno = User.hasOwnProperty("aadhaar") ? User["aadhaar"] : "";
+    const panno = User.hasOwnProperty("pan") ? User["pan"] : "";
 
     const [aadhaar, setaadhaar] = useState(aadhaarno);
     const [pan, setpan] = useState(panno);
@@ -15,63 +32,89 @@ export default function GovtDetails() {
     const useUpdateInfo = (inp, key) => {
         useEffect(() => {
             const userObj = {
-                ...User
-            }
+                ...User,
+            };
             userObj[key] = inp;
             setUser(userObj);
         }, [inp]);
-    } 
+    };
 
-    useUpdateInfo(aadhaar, "aadhaar")
-    useUpdateInfo(pan, "pan")
-
-    const navigate = useNavigate();
+    useUpdateInfo(aadhaar, "aadhaar");
+    useUpdateInfo(pan, "pan");
 
     const navigateToPD = () => {
         // 👇️ navigate to /contacts
-        navigate('/personalDetails');
+        navigate("/personalDetails");
     };
-  
+
     function handleSubmit(event) {
         event.preventDefault();
-        navigate('/addressDetails');
-    //   console.log('fname', fname);
-    //   console.log('lname', lname);
+
+        const userObj = {
+            ...User,
+        };
+
+        userObj["step"] = 3;
+        setUser(userObj);
+
+        navigate("/addressDetails");
+        //   console.log('fname', fname);
+        //   console.log('lname', lname);
     }
 
     function handleBack(event) {
         event.preventDefault();
         PersonalDetails();
     }
-  
-    return (        
-        <form onSubmit={handleSubmit}>
-            <header>Step 2 of 3</header>
-            <div>
-            <label htmlFor="aadhaar">Aadhaar No.:</label>
-            <input
-                id="aadhaar"
-                type="number"
-                value={aadhaar}
-                required
-                onChange={(e) => setaadhaar(e.target.value)}
-            />
-            </div>
-            <div>
-            <label htmlFor="pan">PAN No.:</label>
-            <input
-                id="pan"
-                type="text"
-                value={pan}
-                required
-                onChange={(e) => setpan(e.target.value)}
-            />
-            </div>
 
-            {/* <Link to="/personalDetails">Back</Link> */}
+    return (
+        <div className="Govtdetails">
+            <form onSubmit={handleSubmit}>
+                <div className="header">
+                    <span> ID Details </span>
+                </div>
+                <div>
+                    {/* <label htmlFor="aadhaar">Aadhaar Number :</label> */}
+                    <br />
+                    <input
+                        id="aadhaar"
+                        type="text"
+                        placeholder="Aadhar Number"
+                        value={aadhaar}
+                        required
+                        minLength={12}
+                        maxLength={12}
+                        pattern="\d*"
+                        onChange={(e) => setaadhaar(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="pan">PAN Number :</label> */}
+                    <br />
+                    <input
+                        style={{marginBottom:20}}
+                        id="pan"
+                        type="text"
+                        placeholder="PAN Number"
+                        value={pan}
+                        minLength={10}
+                        maxLength={10}
+                        pattern="\d*"
+                        required
+                        onChange={(e) => setpan(e.target.value)}
+                    />
+                </div>
 
-            <button type="button" id="backBtn" onClick={navigateToPD}>Back</button>
-            <button type="submit">Submit</button>
-        </form>
+                {/* <Link to="/personalDetails">Back</Link> */}
+                <br />
+                <button style={{padding:10, fontSize:15, border:0,borderRadius:15}}type="button" id="backBtn" onClick={navigateToPD}>
+                Back
+                </button>
+                {/* <button style={{ }} id= "submitbtn" type="submit">Submit</button> */}
+                <button style={{padding:10, fontSize:15, border:0,borderRadius:15,marginLeft: 10}} type="submit">Submit</button>
+            </form>
+        </div>
+
     );
-  }
+}

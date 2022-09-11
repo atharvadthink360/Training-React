@@ -1,115 +1,179 @@
-import { useState } from "react";
-import PersonalDetails from './PersonalDetails.js';
-import { Link,Route } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import PersonalDetails from "./PersonalDetails.js";
+import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { infoContext } from "../../infoContext";
+import "./AddressDetails.css"
 
 export default function AddressDetails() {
-
-    const [flatno, setflatno] = useState('');
-    const [bname, setbname] = useState('');
-    const [city, setcity] = useState('');
-    const [state, setstate] = useState('');
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (User.loggedIn != null) {
+            let loginVal = User.loggedIn;
+            if (loginVal == false) {
+                navigate("/");
+            }
+        } else {
+            navigate("/");
+        }
+    }, []);
+
+    const [User, setUser] = useContext(infoContext);
+
+    const flatnumber = User.hasOwnProperty("flatno") ? User["flatno"] : "";
+    const bldgname = User.hasOwnProperty("bname") ? User["bname"] : "";
+    const cityname = User.hasOwnProperty("city") ? User["city"] : "";
+    const statename = User.hasOwnProperty("state") ? User["state"] : "";
+
+    const [flatno, setflatno] = useState(flatnumber);
+    const [bname, setbname] = useState(bldgname);
+    const [city, setcity] = useState(cityname);
+    const [state, setstate] = useState(statename);
+
+    const useUpdateInfo = (inp, key) => {
+        useEffect(() => {
+            const userObj = {
+                ...User,
+            };
+            userObj[key] = inp;
+            setUser(userObj);
+        }, [inp]);
+    };
+
+    useUpdateInfo(flatno, "flatno");
+    useUpdateInfo(bname, "bname");
+    useUpdateInfo(city, "city");
+    useUpdateInfo(state, "state");
 
     const navigateToGD = () => {
         // 👇️ navigate to /contacts
-        navigate('/govtDetails');
+        navigate("/govtDetails");
     };
 
-    const states = [ "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jammu and Kashmir",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttarakhand",
-    "Uttar Pradesh",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Delhi",
-    "Lakshadweep",
-    "Puducherry"];
-  
+    const states = [
+        "Andhra Pradesh",
+        "Arunachal Pradesh",
+        "Assam",
+        "Bihar",
+        "Chhattisgarh",
+        "Goa",
+        "Gujarat",
+        "Haryana",
+        "Himachal Pradesh",
+        "Jammu and Kashmir",
+        "Jharkhand",
+        "Karnataka",
+        "Kerala",
+        "Madhya Pradesh",
+        "Maharashtra",
+        "Manipur",
+        "Meghalaya",
+        "Mizoram",
+        "Nagaland",
+        "Odisha",
+        "Punjab",
+        "Rajasthan",
+        "Sikkim",
+        "Tamil Nadu",
+        "Telangana",
+        "Tripura",
+        "Uttarakhand",
+        "Uttar Pradesh",
+        "West Bengal",
+        "Andaman and Nicobar Islands",
+        "Chandigarh",
+        "Dadra and Nagar Haveli",
+        "Daman and Diu",
+        "Delhi",
+        "Lakshadweep",
+        "Puducherry",
+    ];
+
     function handleSubmit(event) {
         event.preventDefault();
-        navigate('/summary');
-    //   console.log('fname', fname);
-    //   console.log('lname', lname);
-    }
-  
-    return (        
-        <form onSubmit={handleSubmit}>
-            <header>Step 3 of 3</header>
-            <div>
-            <label htmlFor="flatno">Flat No.:</label>
-            <input
-                id="flatno"
-                type="number"
-                value={flatno}
-                required
-                onChange={(e) => setflatno(e.target.value)}
-            />
-            </div>
-            <div>
-            <label htmlFor="bname">Building Name.:</label>
-            <input
-                id="bname"
-                type="text"
-                value={bname}
-                required
-                onChange={(e) => setbname(e.target.value)}
-            />
-            </div>
-            <div>
-            <label htmlFor="city">City:</label>
-            <input
-                id="city"
-                type="text"
-                value={city}
-                required
-                onChange={(e) => setcity(e.target.value)}
-            />
-            </div>
-            <div>
-            <label htmlFor="state">State:</label>
-            <input
-                id="state"
-                type="text"
-                value={state}
-                required
-                onChange={(e) => setstate(e.target.value)}
-            />
-            </div>
-            {/* <button type="button" id="backBtn">Back</button> */}
 
-            {/* <Link>Back</Link> */}
-            
-            <button type="button" id="backBtn" onClick={navigateToGD}>Back</button>
-            <button type="submit">Submit</button>
-        </form>
+        const userObj = {
+            ...User,
+        };
+
+        userObj["step"] = 4;
+        setUser(userObj);
+
+        navigate("/summary");
+    }
+
+    return (
+        <div className="AddressDetails">
+            <form onSubmit={handleSubmit}>
+                <div className="header">
+                    <span>Address Details</span>
+                </div>
+                <div>
+                    {/* <label htmlFor="flatno">Flat number :</label> */}
+                    <br />
+                    <input
+                        id="flatno"
+                        type="number"
+                        placeholder="Flat No."
+                        value={flatno}
+                        min={0}
+                        required
+                        onChange={(e) => setflatno(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="bname">Building number :</label> */}
+                    <br />
+                    <input
+                        placeholder="Building No."
+                        id="bname"
+                        type="text"
+                        value={bname}
+                        required
+                        onChange={(e) => setbname(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="city">City :</label> */}
+                    <br />
+                    <input
+                        placeholder="City"
+                        id="city"
+                        type="text"
+                        value={city}
+                        required
+                        onChange={(e) => setcity(e.target.value)}
+                    />
+                </div>
+                <br />
+                <div>
+                    {/* <label htmlFor="state">State :</label> */}
+                    <br />
+                    <input
+                        style={{marginBottom:10}}
+                        id="state"
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        required
+                        onChange={(e) => setstate(e.target.value)}
+                    />
+                </div>
+                {/* <button type="button" id="backBtn">Back</button> */}
+
+                {/* <Link>Back</Link> */}
+
+                <br />
+
+                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15 }} type="button" id="backBtn" onClick={navigateToGD}>
+                    Back
+                </button>
+                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15, marginLeft: 10 }} type="submit">Submit</button>
+            </form>
+        </div>
+
     );
-  }
+}
