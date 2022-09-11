@@ -153,7 +153,7 @@ export default function AddressDetails() {
                     {/* <label htmlFor="state">State :</label> */}
                     <br />
                     <input
-                        style={{marginBottom:10}}
+                        style={{ marginBottom: 10 }}
                         id="state"
                         type="text"
                         placeholder="State"
@@ -168,12 +168,33 @@ export default function AddressDetails() {
 
                 <br />
 
-                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15 }} type="button" id="backBtn" onClick={navigateToGD}>
+                <button
+                    style={{
+                        padding: 10,
+                        fontSize: 15,
+                        border: 0,
+                        borderRadius: 15,
+                    }}
+                    type="button"
+                    id="backBtn"
+                    onClick={navigateToGD}
+                >
                     Back
                 </button>
-                <button style={{ padding: 10, fontSize: 15, border: 0, borderRadius: 15, marginLeft: 10 }} type="submit">Submit</button>
+                <button
+                    id="submitBtn"
+                    style={{
+                        padding: 10,
+                        fontSize: 15,
+                        border: 0,
+                        borderRadius: 15,
+                        marginLeft: 10,
+                    }}
+                    type="submit"
+                >
+                    Submit
+                </button>
             </form>
         </div>
-
     );
 }

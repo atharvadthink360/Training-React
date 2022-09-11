@@ -126,6 +126,9 @@ export default function Login() {
 
     return (
         <div className="login-page">
+            <div className="header">
+                <span>Login</span>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div>
                     {/* <label htmlFor="username">Username</label> */}
@@ -151,10 +154,20 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <br/>
-                <button style={{padding:10, fontSize:15, border:0,borderRadius:15}} type="submit">Submit</button>
+                <br />
+                <button
+                    style={{
+                        padding: 10,
+                        fontSize: 15,
+                        border: 0,
+                        borderRadius: 15,
+                    }}
+                    type="submit"
+                    id="submitBtn"
+                >
+                    Submit
+                </button>
             </form>
         </div>
-
     );
 }

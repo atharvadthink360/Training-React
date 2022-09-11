@@ -112,7 +112,7 @@ export default function PersonalDetails() {
                 <div className="personal-details-form-container">
                     <div>
                         {/* <label htmlFor="fname">First Name:</label> */}
-                        <br/>
+                        <br />
                         <input
                             className="input-label"
                             id="fname"
@@ -125,7 +125,7 @@ export default function PersonalDetails() {
                     </div>
                     <div>
                         {/* <label htmlFor="lname">Last Name:</label> */}
-                        <br/>
+                        <br />
                         <input
                             className="input-label"
                             id="lname"
@@ -138,7 +138,7 @@ export default function PersonalDetails() {
                     </div>
                     <div>
                         {/* <label htmlFor="email">Email:</label> */}
-                        <br/>
+                        <br />
                         <input
                             className="input-label"
                             id="email"
@@ -151,7 +151,7 @@ export default function PersonalDetails() {
                     </div>
                     <div>
                         {/* <label htmlFor="phone">Phone No:</label> */}
-                        <br/>
+                        <br />
                         <input
                             className="input-label"
                             id="phone"
@@ -166,10 +166,20 @@ export default function PersonalDetails() {
                         />
                     </div>
                 </div>
-                <br/>
-                <button style={{padding:10, fontSize:15, border:0,borderRadius:15}} type="submit">Submit</button>
+                <br />
+                <button
+                    style={{
+                        padding: 10,
+                        fontSize: 15,
+                        border: 0,
+                        borderRadius: 15,
+                    }}
+                    id="submitBtn"
+                    type="submit"
+                >
+                    Submit
+                </button>
             </form>
         </div>
-
     );
 }
