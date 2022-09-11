@@ -2,12 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import PersonalDetails from './PersonalDetails.js';
 import { Link, Route, useNavigate } from "react-router-dom";
 import { infoContext } from "../../infoContext";
-import "./GovtDetails.css"
-import { Bluetooth } from "@mui/icons-material";
-
+import "./GovtDetails.css";
 
 export default function GovtDetails() {
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,7 +40,6 @@ export default function GovtDetails() {
     useUpdateInfo(pan, "pan");
 
     const navigateToPD = () => {
-        // 👇️ navigate to /contacts
         navigate("/personalDetails");
     };
 
@@ -58,8 +54,6 @@ export default function GovtDetails() {
         setUser(userObj);
 
         navigate("/addressDetails");
-        //   console.log('fname', fname);
-        //   console.log('lname', lname);
     }
 
     function handleBack(event) {
@@ -74,7 +68,6 @@ export default function GovtDetails() {
                     <span> ID Details </span>
                 </div>
                 <div>
-                    {/* <label htmlFor="aadhaar">Aadhaar Number :</label> */}
                     <br />
                     <input
                         id="aadhaar"
@@ -90,7 +83,6 @@ export default function GovtDetails() {
                 </div>
                 <br />
                 <div>
-                    {/* <label htmlFor="pan">PAN Number :</label> */}
                     <br />
                     <input
                         style={{ marginBottom: 20 }}
@@ -105,8 +97,6 @@ export default function GovtDetails() {
                         onChange={(e) => setpan(e.target.value)}
                     />
                 </div>
-
-                {/* <Link to="/personalDetails">Back</Link> */}
                 <br />
                 <button
                     style={{
@@ -121,7 +111,6 @@ export default function GovtDetails() {
                 >
                     Back
                 </button>
-                {/* <button style={{ }} id= "submitbtn" type="submit">Submit</button> */}
                 <button
                     id="submitBtn"
                     style={{

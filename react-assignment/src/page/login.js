@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect } from "react";
-// import { UserContext } from "../App";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { infoContext } from "../infoContext";
-import "./login.css"
+import "./login.css";
 
 export default function Login() {
     const [User, setUser] = useContext(infoContext);
@@ -40,16 +38,8 @@ export default function Login() {
     };
 
     function callPath(path) {
-        console.log("Navigating");
         navigate(path);
     }
-
-    // const navigateToPD = () => {
-    //     // 👇️ navigate to /contacts
-    //     navigate('/personalDetails');
-    // };
-
-    // <Route path="/personalDetails" exact element={<PersonalDetails/>}/>
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -71,57 +61,25 @@ export default function Login() {
             userObj["step"] = 1;
 
             setUser(userObj);
-            // document.getElementById("loginBtn").innerHTML = "LOGOUT";
-
-            console.log(User);
-
-            // localStorage.setItem("loggedIn", true);
-
-            // UpdateInfo(username, "username");
-            // UpdateInfo(password, "password");
-
-            // console.log("OITTTTTTTTTTT");
 
             navigate("/personalDetails");
         }
 
         if (User.username != null) {
-            // let path = "";
-            console.log("Step number", typeof 1);
             if (User.step === 1) {
-                console.log("INNNNNN");
-                // window.location.href = "/personalDetails";
-                // path = "/personalDetails";
                 navigateToPD();
-                // navigate("/personalDetails");
             } else if (User.step === 2) {
-                console.log("IOPPPPOPPPOPO");
-                // path = "/govtDetails";
                 navigateToGD();
-                // window.location.href = "/govtDetails";
-                // navigate("/govtDetails");
             } else if (User.step === 3) {
-                // path = "/addressDetails";
                 navigateToAD();
-                // navigate("/addressDetails");
-                // window.location.href = "/addressDetails";
             } else {
-                // window.location.href = "/summary";
-                // path = "/summary";
                 navigateToSummary();
-                // navigate("/summary");
             }
-            // navigate("/addressDetails");
         }
-
-        console.log(path);
 
         if (path !== "") {
-            console.log("INSIDE THIS");
             callPath(path);
         }
-
-        // event.preventDefault();
     };
 
     return (
@@ -131,7 +89,6 @@ export default function Login() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    {/* <label htmlFor="username">Username</label> */}
                     <input
                         className="input-label"
                         id="username"
@@ -143,7 +100,6 @@ export default function Login() {
                     />
                 </div>
                 <div>
-                    {/* <label htmlFor="password">Password</label> */}
                     <input
                         className="input-label"
                         id="password"

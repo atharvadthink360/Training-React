@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect } from "react";
-import PersonalDetails from "./PersonalDetails.js";
-import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { infoContext } from "../../infoContext";
-import "./AddressDetails.css"
+import "./AddressDetails.css";
 
 export default function AddressDetails() {
     const navigate = useNavigate();
@@ -47,48 +45,8 @@ export default function AddressDetails() {
     useUpdateInfo(state, "state");
 
     const navigateToGD = () => {
-        // 👇️ navigate to /contacts
         navigate("/govtDetails");
     };
-
-    const states = [
-        "Andhra Pradesh",
-        "Arunachal Pradesh",
-        "Assam",
-        "Bihar",
-        "Chhattisgarh",
-        "Goa",
-        "Gujarat",
-        "Haryana",
-        "Himachal Pradesh",
-        "Jammu and Kashmir",
-        "Jharkhand",
-        "Karnataka",
-        "Kerala",
-        "Madhya Pradesh",
-        "Maharashtra",
-        "Manipur",
-        "Meghalaya",
-        "Mizoram",
-        "Nagaland",
-        "Odisha",
-        "Punjab",
-        "Rajasthan",
-        "Sikkim",
-        "Tamil Nadu",
-        "Telangana",
-        "Tripura",
-        "Uttarakhand",
-        "Uttar Pradesh",
-        "West Bengal",
-        "Andaman and Nicobar Islands",
-        "Chandigarh",
-        "Dadra and Nagar Haveli",
-        "Daman and Diu",
-        "Delhi",
-        "Lakshadweep",
-        "Puducherry",
-    ];
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -110,7 +68,6 @@ export default function AddressDetails() {
                     <span>Address Details</span>
                 </div>
                 <div>
-                    {/* <label htmlFor="flatno">Flat number :</label> */}
                     <br />
                     <input
                         id="flatno"
@@ -124,7 +81,6 @@ export default function AddressDetails() {
                 </div>
                 <br />
                 <div>
-                    {/* <label htmlFor="bname">Building number :</label> */}
                     <br />
                     <input
                         placeholder="Building No."
@@ -137,7 +93,6 @@ export default function AddressDetails() {
                 </div>
                 <br />
                 <div>
-                    {/* <label htmlFor="city">City :</label> */}
                     <br />
                     <input
                         placeholder="City"
@@ -150,7 +105,6 @@ export default function AddressDetails() {
                 </div>
                 <br />
                 <div>
-                    {/* <label htmlFor="state">State :</label> */}
                     <br />
                     <input
                         style={{ marginBottom: 10 }}
@@ -162,9 +116,6 @@ export default function AddressDetails() {
                         onChange={(e) => setstate(e.target.value)}
                     />
                 </div>
-                {/* <button type="button" id="backBtn">Back</button> */}
-
-                {/* <Link>Back</Link> */}
 
                 <br />
 

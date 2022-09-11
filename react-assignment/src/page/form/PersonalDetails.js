@@ -42,51 +42,13 @@ export default function PersonalDetails() {
         }, [inp]);
     };
 
-    // const [contextVal, setContext] = useContext(infoContext);
-    // const [val, setVal] = useState(valInp);
-
     useUpdateInfo(fname, "fname");
     useUpdateInfo(lname, "lname");
     useUpdateInfo(email, "email");
     useUpdateInfo(phone, "phone");
 
-    // useEffect(() => {
-    //     const userObj = {
-    //         ...User
-    //     }
-    //     userObj["fname"] = fname;
-    //     setUser(userObj);
-    // }, [fname]);
-
-    // useEffect(() => {
-    //     const userObj = {
-    //         ...User
-    //     }
-    //     userObj["lname"] = lname;
-    //     setUser(userObj);
-    // }, [lname]);
-
-    // useEffect(() => {
-    //     const userObj = {
-    //         ...User
-    //     }
-    //     userObj["email"] = email;
-    //     setUser(userObj);
-    // }, [email]);
-
-    // useEffect(() => {
-    //     const userObj = {
-    //         ...User
-    //     }
-    //     userObj["phone"] = phone;
-    //     setUser(userObj);
-    // }, [phone]);
-
     function handleSubmit(event) {
         event.preventDefault();
-        // console.log('fname', fname);
-
-        // console.log('lname', lname);
         console.log(User);
 
         const userObj = {
@@ -97,10 +59,6 @@ export default function PersonalDetails() {
         setUser(userObj);
 
         navigate("/govtDetails");
-
-        // if (correctFirstName && correctLastName && correctEmail && correctPhone){
-        //     navigate('/govtDetails');
-        // }
     }
 
     return (
@@ -111,7 +69,6 @@ export default function PersonalDetails() {
                 </div>
                 <div className="personal-details-form-container">
                     <div>
-                        {/* <label htmlFor="fname">First Name:</label> */}
                         <br />
                         <input
                             className="input-label"
@@ -124,7 +81,6 @@ export default function PersonalDetails() {
                         />
                     </div>
                     <div>
-                        {/* <label htmlFor="lname">Last Name:</label> */}
                         <br />
                         <input
                             className="input-label"
@@ -137,7 +93,6 @@ export default function PersonalDetails() {
                         />
                     </div>
                     <div>
-                        {/* <label htmlFor="email">Email:</label> */}
                         <br />
                         <input
                             className="input-label"
@@ -150,7 +105,6 @@ export default function PersonalDetails() {
                         />
                     </div>
                     <div>
-                        {/* <label htmlFor="phone">Phone No:</label> */}
                         <br />
                         <input
                             className="input-label"
