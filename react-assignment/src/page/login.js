@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoContext } from "../infoContext";
 import "./login.css";
+const axios = require("axios");
 
 export default function Login() {
     const [User, setUser] = useContext(infoContext);
@@ -61,6 +62,16 @@ export default function Login() {
             userObj["step"] = 1;
 
             setUser(userObj);
+
+            const body = {
+                username: username,
+                password: password,
+            };
+
+            let responseVal = axios.post(
+                "http://localhost:8080/api/v1/person",
+                JSON.stringify(body)
+            );
 
             navigate("/personalDetails");
         }

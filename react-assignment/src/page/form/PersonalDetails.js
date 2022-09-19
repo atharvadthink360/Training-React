@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { infoContext } from "../../infoContext";
 import "./PersonalDetails.css"
+const axios = require("axios");
 
 export default function PersonalDetails() {
     const navigate = useNavigate();
@@ -58,6 +59,38 @@ export default function PersonalDetails() {
         userObj["step"] = 2;
         setUser(userObj);
 
+        const body = {
+            first_name: fname,
+            last_name: lname,
+            email: email,
+            phone: phone,
+            username: userObj["username"],
+        };
+
+        let responseVal = axios.post(
+            "http://localhost:8080/api/v1/updatePerson/",
+            JSON.stringify(body)
+        );
+
+        // var urlLink = "http://localhost:8080/api/v1/person";
+
+        // console.log(urlLink);
+
+        // console.log(body);
+
+        // const headers = {
+        //     "Content-Type": "application/json",
+        // };
+
+        // let responseVal = axios({
+        //     method: "put",
+        //     url: urlLink,
+        //     body,
+        //     headers: headers,
+        // });
+
+        // let responseVal = axios.put(urlLink, JSON.stringify(body),Headers);
+
         navigate("/govtDetails");
     }
 
@@ -109,12 +142,12 @@ export default function PersonalDetails() {
                         <input
                             className="input-label"
                             id="phone"
-                            type="type"
+                            type="text"
                             placeholder="Phone No"
                             value={phone}
                             minLength={10}
                             maxLength={10}
-                            pattern="\d*"
+                            // pattern="\d*"
                             required
                             onChange={(e) => setPhone(e.target.value)}
                         />
