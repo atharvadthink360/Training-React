@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#submitBtn:hover {
+  background-color:lawngreen;
+  color :black;
+  border-color:white 
+}
+
+#backBtn {
+  background-color: #EF684B;
+  color: white;
+}
+
+#backBtn:hover {
+  background-color: #E72900;
+  color: white;
+  border-color: white;
+  box-shadow: 2px 2px 5px gray;
+}
