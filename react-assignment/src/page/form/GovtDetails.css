@@ -7,6 +7,9 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-content: space-between;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 3%;
 }
