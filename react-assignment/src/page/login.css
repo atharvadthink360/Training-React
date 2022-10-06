@@ -1,0 +1,57 @@
+<<<<<<< HEAD
+.fullContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 1000px;
+
+}
+
+.Header{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-left: 500px; */
+    color: brown;
+    font-size: 60px;
+    /* width: 1000px; */
+}
+
+.Box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+
+=======
+.login-page {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.input-label {
+    margin-bottom: 25px;
+}
+
+input {
+    margin-left: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 0;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+>>>>>>> temp
+}
